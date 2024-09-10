@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <title>JS Drum Kit</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="https://fav.farm/🔥" />
+    <link rel="icon" href="https://fav.farm/✅" />
   </head>
   <body>
     <div class="keys">
@@ -57,27 +57,33 @@
     <audio data-key="76" src="sounds/tink.wav"></audio>
 
     <script>
-      document.addEventListener("keydown", (evt) => {
-        const audio = document.querySelector(
-          `audio[data-key="${evt.keyCode}"]`
-        );
-        const key = document.querySelector(`.key[data-key="${evt.keyCode}"]`);
-        if (!audio) return;
-        key.classList.add("playing");
-        audio.currentTime = 0;
-        audio.play();
-      });
+      function removeTransition(e) {
+        if (e.propertyName !== "transform") return;
+        e.target.classList.remove("playing");
+      }
 
-      const keys = document.querySelectorAll(".key");
+      function playSound(e) {
+        const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+        const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
+        if (!audio) return; //stop the function from running when hitting a non available option
+
+        key.classList.add("playing"); //same as key.addClass in JQuery
+
+        /*Ensures that the sound always plays from the beginning. Otherwise,
+        if the 'a' key is pressed twice rapidly, the soundclip will only play through
+         once*/
+        audio.currentTime = 0;
+        audio.play(); // Play sound
+      }
+
+      const keys = Array.from(document.querySelectorAll(".key")); // Find all elements in the document with a class 'key'
+      // Listen for any `keydown` events that occur on this browser window instance (this page)
+      // When a `keydown` event is observered, trigger the `playSound` function, passing in the
+      // `keydown` event as the argument (e)
+      window.addEventListener("keydown", playSound);
       keys.forEach((key) =>
         key.addEventListener("transitionend", removeTransition)
       );
-
-      function removeTransition(evt) {
-        if (evt.propertyName == "transform") {
-          this.classList.remove("playing");
-        } else return;
-      }
     </script>
   </body>
 </html>
