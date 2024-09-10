@@ -64,6 +64,10 @@
         transition: all 0.05s;
         transition-timing-function: cubic-bezier(0.29, 1.01, 1, -0.68);
       }
+
+      .fast {
+        transition: all 0s;
+      }
     </style>
 
     <script>
@@ -87,6 +91,10 @@
         hourHand.style.transform = `rotate(${hourHandDegrees}deg)  scale(0.7)`;
         minHand.style.transform = `rotate(${minHandDegrees}deg)`;
         secondHand.style.transform = `rotate(${secondHandDegrees}deg)`;
+
+        //fix glich second hand
+        if (secondHandDegrees === 0) secondHand.classList.add("fast");
+        if (secondHandDegrees === 1) secondHand.classList.remove("fast");
       }, 1000);
     </script>
   </body>
