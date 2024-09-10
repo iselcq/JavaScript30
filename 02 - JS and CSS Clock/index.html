@@ -9,7 +9,7 @@
     <div class="clock">
       <div class="clock-face">
         <div class="hand hour-hand"></div>
-        <div class="hand min-hand"></div>
+        <div class="hand min-hand hand-minutes"></div>
         <div class="hand second-hand"></div>
       </div>
     </div>
@@ -84,7 +84,7 @@
           60
         );
         //Apply rotation to clock hands with current time
-        hourHand.style.transform = `rotate(${hourHandDegrees}deg)`;
+        hourHand.style.transform = `rotate(${hourHandDegrees}deg)  scale(0.7)`;
         minHand.style.transform = `rotate(${minHandDegrees}deg)`;
         secondHand.style.transform = `rotate(${secondHandDegrees}deg)`;
       }, 1000);
