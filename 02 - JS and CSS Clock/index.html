@@ -68,8 +68,26 @@
 
     <script>
       const hourHand = document.querySelector(".hour-hand");
-      const minHand = document.querySelector(".minsr-hand");
+      const minHand = document.querySelector(".min-hand");
       const secondHand = document.querySelector(".second-hand");
+
+      const handDegreeChange = (time, max) => (time / max) * 360;
+
+      // Call function once every second
+      setInterval(() => {
+        const currentTime = new Date();
+        // Get current seconds, minutes, & hours and calculate the degree shift
+        const hourHandDegrees = handDegreeChange(currentTime.getHours(), 12);
+        const minHandDegrees = handDegreeChange(currentTime.getMinutes(), 60);
+        const secondHandDegrees = handDegreeChange(
+          currentTime.getSeconds(),
+          60
+        );
+        //Apply rotation to clock hands with current time
+        hourHand.style.transform = `rotate(${hourHandDegrees}deg)`;
+        minHand.style.transform = `rotate(${minHandDegrees}deg)`;
+        secondHand.style.transform = `rotate(${secondHandDegrees}deg)`;
+      }, 1000);
     </script>
   </body>
 </html>
