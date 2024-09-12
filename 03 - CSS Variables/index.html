@@ -40,9 +40,6 @@
     />
 
     <style>
-      /*
-        misc styles, nothing to do with CSS variables
-      */
       /* Two hyphens (--) followed by the variable name represent custom properties that contain a 
       value that can be used in other declarations using the var() function.*/
 
@@ -86,7 +83,9 @@
       const inputs = document.querySelectorAll(".controls input");
 
       function handleUpdate() {
+        //add the "data-sizng" for CSS properies (px) or nothing (color) to constant
         const suffix = this.dataset.sizing || "";
+        //Changue CSS variable with js
         document.documentElement.style.setProperty(
           `--${this.name}`,
           this.value + suffix
