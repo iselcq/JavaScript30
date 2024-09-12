@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Scoped CSS Variables and JS</title>
+    <link rel="icon" href="https://fav.farm/🔥" />
+  </head>
+  <body>
+    <h2>Update CSS Variables with <span class="h1">JS</span></h2>
+
+    <div class="controls">
+      <label for="spacing">Spacing:</label>
+      <input
+        id="spacing"
+        type="range"
+        name="spacing"
+        min="10"
+        max="200"
+        value="10"
+        data-sizing="px"
+      />
+
+      <label for="blur">Blur:</label>
+      <input
+        id="blur"
+        type="range"
+        name="blur"
+        min="0"
+        max="25"
+        value="10"
+        data-sizing="px"
+      />
+
+      <label for="base">Base Color</label>
+      <input id="base" type="color" name="base" value="#ffc600" />
+    </div>
+
+    <img
+      src="https://images.unsplash.com/photo-1512813389649-acb9131ced20?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    />
+
+    <style>
+      /*
+        misc styles, nothing to do with CSS variables
+      */
+      /* Two hyphens (--) followed by the variable name represent custom properties that contain a 
+      value that can be used in other declarations using the var() function.*/
+
+      :root {
+        --base: #ffc600;
+        --blur: 10px;
+        --spacing: 10px;
+      }
+
+      img {
+        background: var(--base);
+        filter: blur(var(--blur));
+        padding: var(--spacing);
+        width: 800px;
+        height: 500px;
+      }
+
+      .h1 {
+        color: var(--base);
+      }
+
+      body {
+        text-align: center;
+        background: #193549;
+        color: white;
+        font-family: "helvetica neue", sans-serif;
+        font-weight: 100;
+        font-size: 50px;
+      }
+
+      .controls {
+        margin-bottom: 50px;
+      }
+
+      input {
+        width: 100px;
+      }
+    </style>
+
+    <script>
+      const inputs = document.querySelectorAll(".controls input");
+
+      function handleUpdate() {
+        const suffix = this.dataset.sizing || "";
+        document.documentElement.style.setProperty(
+          `--${this.name}`,
+          this.value + suffix
+        );
+      }
+      inputs.forEach((inp) => inp.addEventListener("change", handleUpdate));
+      inputs.forEach((inp) =>
+        inp.removeEventListener("mousemove", handleUpdate)
+      );
+    </script>
+  </body>
+</html>
