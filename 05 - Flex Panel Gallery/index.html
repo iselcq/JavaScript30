@@ -77,7 +77,6 @@
         margin: 0;
         width: 100%;
         transition: transform 0.5s;
-        border: 1px red solid;
         flex: 1 0 auto;
         display: flex;
         justify-content: center;
@@ -145,6 +144,23 @@
       </div>
     </div>
 
-    <script></script>
+    <script>
+      const allPanels = document.querySelectorAll(".panel");
+
+      function handleOpen() {
+        this.classList.toggle("open");
+      }
+
+      function handleText(e) {
+        if (e.propertyName.includes("flex")) {
+          this.classList.toggle("open-active");
+        }
+      }
+
+      allPanels.forEach((panel) => panel.addEventListener("click", handleOpen));
+      allPanels.forEach((panel) =>
+        panel.addEventListener("transitionend", handleText)
+      );
+    </script>
   </body>
 </html>
