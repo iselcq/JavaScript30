@@ -4,4 +4,4 @@ In this dev tools exercise we'll explore how to set break points in the browser 
 
 ---
 
-This is a JavaScript practice with [JavaScript30] (https://javascript30.com/) by [Wes Bos] (https://github.com/wesbos) without any frameworks, no compilers, no boilerplate, and no libraries.
+This is a JavaScript practice with [JavaScript30](https://javascript30.com/) by [Wes Bos](https://github.com/wesbos) without any frameworks, no compilers, no boilerplate, and no libraries.
