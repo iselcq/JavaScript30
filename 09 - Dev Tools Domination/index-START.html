@@ -1,47 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Console Tricks!</title>
-  <link rel="icon" href="https://fav.farm/🔥" />
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Console Tricks!</title>
+    <link rel="icon" href="https://fav.farm/🔥" />
+  </head>
+  <body>
+    <p onClick="makeGreen()">×BREAK×DOWN×</p>
 
-  <p onClick="makeGreen()">×BREAK×DOWN×</p>
+    <script>
+      const dogs = [
+        { name: "Snickers", age: 2 },
+        { name: "hugo", age: 8 },
+      ];
 
-  <script>
-    const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+      function makeGreen() {
+        const p = document.querySelector("p");
+        p.style.color = "#BADA55";
+        p.style.fontSize = "50px";
+      }
 
-    function makeGreen() {
-      const p = document.querySelector('p');
-      p.style.color = '#BADA55';
-      p.style.fontSize = '50px';
-    }
+      // Regular
+      console.log("I am just a normal console.log");
 
-    // Regular
+      // Interpolated - Dynamically update the string value logged out using %s
+      console.log("Hello! I am a %s string!", "🐙");
+      // Interpolation using ES6 template string
+      let testInterpolation = "🍏";
+      console.log(
+        `Testing ES6 interpolation: ${testInterpolation} <-- This should be an apple!`
+      );
 
-    // Interpolated
+      // Styled  - Apply styling to a log event using %c
+      console.log("%c I am some edited text", "font-size:1.2em; color: pink;");
 
-    // Styled
+      // warning! - Displays a log event preceded with a caution sign
+      console.warn("WARNING: Oh no, this is a warning");
 
-    // warning!
+      // Error - Displays a log event highlighted in red with an 'x'
+      console.error("This is an error display!");
 
-    // Error :|
+      // Info - Displays a log event preceded by an 'i'
+      console.info("Display relevant information to this log!");
+      // Testing -  A very basic assert statement which accepts two arguments:
+      //           the expression we want to evaluate the truthiness of, and
+      //           a message to display if the assertion fails.
+      console.assert(1 === 1, "That is wrong");
 
-    // Info
+      const p = document.querySelector("p");
+      console.assert(p.classList.contains("ouch"), "That is wrong!");
 
-    // Testing
+      // clearing - Clear all previously outputted console events
+      //console.clear()
 
-    // clearing
+      // Viewing DOM Elements
+      console.log(p); // Standard console log event
+      console.dir(p); // Logs out an interactive list of properties for a given object
 
-    // Viewing DOM Elements
+      // Grouping together - Log out related information in a collapsible group
+      dogs.forEach((dog) => {
+        console.groupCollapsed(`${dog.name}`);
+        console.log(`${dog.name} is ${dog.age} years old`);
+        console.log(`${dog.name} is ${dog.age * 7} dog years old`);
+        console.groupEnd(`${dog.name}`);
+      });
 
-    // Grouping together
+      // Counting - Log out a given statement followed by a colon + the amount of times
+      // this particular statement has already been logged
+      console.count("WEEWOO");
+      console.count("Woo!");
+      console.count("Woo!");
+      console.count("Wee?");
+      console.count("Wee?");
+      console.count("Woo!");
+      console.count("Wee?");
+      console.count("WEEWOO");
+      console.count("WEEWOO");
+      console.count("WEEWOO");
+      console.count("Wee?");
+      console.count("Wee?");
+      console.count("Wee?");
+      console.count("Wee?");
+      console.count("Wee?");
 
-    // counting
+      // Timing -Logs out the time taken to perform a given action
+      console.time("fetching data");
+      fetch("https://api.github.com/users/iselcq")
+        .then((data) => data.json(data))
+        .then((data) => {
+          console.timeEnd("fetching data");
+          console.log(data);
+        });
 
-    // timing
-
-  </script>
-</body>
+      // Table - Log out array/object data in a table format
+      console.table(dogs);
+      // Provide properties to be displayed in the table as an array of string values
+      // corresponding with property names
+      console.table(dogs, ["age"]);
+    </script>
+  </body>
 </html>
